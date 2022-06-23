@@ -6,6 +6,7 @@ The presentation is set up using [`pipenv`](https://pipenv.pypa.io/en/latest/)
 
 - Enter `pipenv shell`
 - Install dependencies: `pipenv install`
+- Enable splitcell: `jupyter nbextension enable splitcell/splitcell`
 - Run Jupiter Notebook: `jupiter notebook`
 
 # Dependencies
