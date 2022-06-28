@@ -1,5 +1,3 @@
-Binder preview: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Larox/switch-loops-with-itertools/main)
-
 # Set up
 
 The presentation is set up using [`pipenv`](https://pipenv.pypa.io/en/latest/)
