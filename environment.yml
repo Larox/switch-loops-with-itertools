@@ -1,0 +1,8 @@
+name: switch-loops-with-itertools
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - notebook
+  - rise
+  - jupyter-contrib-nbextensions
