@@ -16610,6 +16610,82 @@ Doku
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Itertools-Composition-Example">Itertools Composition Example<a class="anchor-link" href="#Itertools-Composition-Example">&#182;</a></h2>
+</div>
+</div>
+</div>
+</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">timeit</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">starmap</span><span class="p">,</span> <span class="n">compress</span><span class="p">,</span> <span class="n">filterfalse</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">NamedTuple</span>
+
+<span class="k">class</span> <span class="nc">Stocks</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">stock</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">buy_price</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">shares</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">current_price</span><span class="p">:</span> <span class="nb">float</span>
+
+
+<span class="n">stocks_i</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Stocks</span><span class="p">(</span><span class="s1">&#39;APPL&#39;</span><span class="p">,</span> <span class="mf">130.00</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">200.00</span><span class="p">),</span>
+    <span class="n">Stocks</span><span class="p">(</span><span class="s1">&#39;TSLA&#39;</span><span class="p">,</span> <span class="mf">400.00</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">550.00</span><span class="p">),</span>
+    <span class="n">Stocks</span><span class="p">(</span><span class="s1">&#39;NDAQ&#39;</span><span class="p">,</span> <span class="mf">150.00</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">100.00</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">calculate_gain_loss_it</span><span class="p">(</span><span class="n">stock</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">buy_price</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">shares</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">current_price</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">buy_total</span> <span class="o">=</span> <span class="n">shares</span> <span class="o">*</span> <span class="n">buy_price</span>
+    <span class="n">current_total</span> <span class="o">=</span> <span class="n">shares</span> <span class="o">*</span> <span class="n">current_price</span>
+    <span class="n">gain_loss</span> <span class="o">=</span> <span class="n">current_total</span> <span class="o">-</span> <span class="n">buy_total</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">stock</span><span class="p">,</span> <span class="n">gain_loss</span><span class="p">)</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="n">filterfalse</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">starmap</span><span class="p">(</span><span class="n">calculate_gain_loss_it</span><span class="p">,</span> <span class="n">stocks_i</span><span class="p">)))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>[(&#39;APPL&#39;, 140.0), (&#39;TSLA&#39;, 750.0)]</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Advantages-of-itertools">Advantages of itertools<a class="anchor-link" href="#Advantages-of-itertools">&#182;</a></h3>
 </div>
 </div>
